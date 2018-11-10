@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.multipart.maxSize" value="100000000"/>
+	
+
+	 <package name="index" namespace="/" extends="struts-default">
+	 
+	 	<action name="index" method="index" class="manageAction" >
+           <result  name="success1">index.jsp</result>
+           <result  name="success2">login.jsp</result>
+        </action>
+	 
+		<action name="method" class="manageAction">
+            
+			<result type="dispatcher">${url}</result>
+			<result name="redirect" type="redirect">${url}</result>
+		</action>
+        <action name="menmianAction_*" class="menmianAction" method="{1}">
+        	<result name="menmianlist">/menmian/menmianlist.jsp</result>
+        	<result name="updatemenmian">/menmian/menmianupdate.jsp</result>
+        	<result name="menmianAction_getAllMenmian" type="redirectAction">
+				<param name="actionName">menmianAction_getAllMenmian</param>
+			</result>
+        </action>
+        <action name="peixunAction_*" class="peixunAction" method="{1}">
+        	<result name="method!hetonglist" type="redirectAction">
+        		<param name="actionName">method!peixunlist</param>
+        	</result>
+        	<result name="updategradeSuccess">success.jsp</result>
+        </action>
+    </package>
+
+
+</struts>
